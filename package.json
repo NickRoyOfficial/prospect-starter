@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "node scripts/preview.mjs",
     "check": "node scripts/check.mjs",
     "test": "node --test",
-    "deploy": "node scripts/deploy.mjs"
+    "deploy": "node scripts/deploy.mjs",
+    "catalog": "node scripts/catalog.mjs",
+    "section": "node scripts/section.mjs"
   }
 }

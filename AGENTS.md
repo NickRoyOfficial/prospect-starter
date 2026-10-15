@@ -4,11 +4,12 @@
 - Foundation source: https://github.com/NickRoyOfficial/prospect-starter
 - This is an industry-agnostic static website foundation, not a page template.
 - Read BRIEF.md and the relevant source before editing. Treat the current user request as authoritative.
-- Keep page composition, hero, imagery, fonts, colors, and copy specific to the business. Do not add a preset hero or industry sections to the shared starter.
+- Keep page composition, hero, imagery, fonts, colors, and copy specific to the business. Keep the deployed starter shell empty. Optional components/ contains industry-neutral layout variants that can be selected for individual projects.
 - Populate BRIEF.md as facts, source links, assets, and decisions become available. Keep it brief and current.
 - Use GitHub for source and the approved Cloudflare project for hosting. Do not substitute another platform without instruction.
 
 ## Work efficiently
+- For section composition, use npm run section -- --list for a concise inventory, then read only selected variant HTML/CSS and components/base.css. Mix suitable distributions; do not reuse the same entire page composition across prospects. Replace every token and media slot before deployment. Testimonials require verified content.
 - Reuse public/css and public/js. Load only relevant files and ranges. Avoid repository dumps, repetitive searches, dependency installation, or repeated checks without a reason.
 - Use native HTML, CSS, browser APIs, and the existing Node scripts first. Do not add frameworks or libraries for routine UI.
 - Make targeted changes and preserve approved work. Do not redesign unrelated sections.
@@ -27,7 +28,7 @@
 ## Design and accessibility
 - Produce professional, business-specific layouts. Use the shared infrastructure without imposing one visual design across industries.
 - Implement semantic HTML, readable text, adequate contrast, visible focus, labeled fields, accessible controls, responsive media, and comfortable touch targets.
-- Build page-specific hero layouts independently. If a one-screen hero is requested, use 100svh with a 100vh fallback, account for navigation and safe areas, and prevent ordinary viewport clipping. Allow growth when content or enlarged text requires it.
+- Choose and customize a hero scaffold only when it fits the approved business-specific design. If a one-screen hero is requested, use 100svh with a 100vh fallback, account for navigation and safe areas, and prevent ordinary viewport clipping. Allow growth when content or enlarged text requires it.
 - Use lightweight motion and respect reduced motion. Essential content must remain available without animation or hover.
 - Use native details for simple accordions and dialog for modals. Optional shared scripts activate only on matching data attributes.
 - Forms need a real, explicitly configured destination. Never simulate delivery or display success before acceptance. Draft modes prepare messages; the visitor sends them.

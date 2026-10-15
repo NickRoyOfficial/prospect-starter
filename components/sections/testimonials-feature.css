@@ -1,0 +1,1 @@
+.testimonials-feature .c-quote-feature{display:grid;grid-template-columns:1.5fr 1fr;gap:var(--c-gap)}.testimonials-feature .c-quote-feature>.c-quote blockquote{font-size:clamp(1.75rem,3.5vw,3.5rem)}@media(max-width:760px){.testimonials-feature .c-quote-feature{grid-template-columns:1fr}}

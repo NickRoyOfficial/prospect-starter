@@ -1,0 +1,1 @@
+.footer-columns .c-footer-grid{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:var(--c-gap)}.footer-columns nav h2{font-size:.9rem;margin-bottom:1.2rem}.footer-columns nav a{font-size:.85rem}@media(max-width:760px){.footer-columns .c-footer-grid{grid-template-columns:1fr 1fr}.footer-columns .c-footer-grid>div{grid-column:1/-1}}

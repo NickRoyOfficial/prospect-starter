@@ -1,6 +1,6 @@
 # Prospect starter
 
-Reusable infrastructure for static prospect websites in any industry. No preset hero, industry copy, section layout, branding, photo selection, or external runtime dependencies. The starter page is intentionally empty.
+Reusable infrastructure and an optional component library for static prospect websites in any industry. The deployed starter page is intentionally empty. Choose from 27 layout variants as needed; no business copy, branding, or photos are assumed. No external runtime dependencies. See components/README.md.
 
 ## Start a prospect
 1. Copy this repository into a separate prospect repository. If you enable GitHub's **Template repository** setting, use **Use this template** for each new business. Copying the files into an existing repository also works. If using git clone, set origin to the new prospect repository before pushing.
@@ -13,6 +13,8 @@ Requires Node.js 20 or newer. No npm install is needed for preview, checks, or t
 
 | Command | Purpose |
 | --- | --- |
+| `npm run catalog` | Visual component library with variant, theme, and viewport controls at http://127.0.0.1:8001. |
+| `npm run section -- --list` | List reusable layout IDs; select just the relevant source for each project. |
 | `npm run dev` | Local preview at http://127.0.0.1:8000. Set PORT to change it. |
 | `npm run check` | Syntax, local resource, markup, and configuration checks. |
 | `npm test` | Draft URL, endpoint validation, and preview-server boundary tests. |

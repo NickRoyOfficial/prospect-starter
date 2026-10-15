@@ -1,0 +1,1 @@
+.benefits-bento .c-bento{display:grid;grid-template-columns:1.4fr 1fr;gap:var(--c-gap)}.benefits-bento .c-bento-feature{grid-row:span 3}.benefits-bento .c-bento-feature .c-media{margin-top:2rem}@media(max-width:760px){.benefits-bento .c-bento{grid-template-columns:1fr}.benefits-bento .c-bento-feature{grid-row:auto}}

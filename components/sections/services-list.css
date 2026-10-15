@@ -1,0 +1,1 @@
+.services-list .c-service-row{display:grid;grid-template-columns:3rem 1fr 1.2fr auto;gap:1.5rem;align-items:start;padding:1.5rem 0;border-top:1px solid var(--color-border)}@media(max-width:760px){.services-list .c-service-row{grid-template-columns:2rem 1fr auto}.services-list .c-service-row p{grid-column:2;grid-row:2}.services-list .c-service-row a{grid-column:3;grid-row:1}}

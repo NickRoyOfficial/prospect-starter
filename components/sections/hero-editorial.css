@@ -1,0 +1,1 @@
+.hero-editorial .c-hero-copy{max-width:64rem}.hero-editorial .c-editorial-bottom{display:grid;grid-template-columns:1fr 2fr;align-items:end;gap:var(--c-gap);margin-top:var(--c-gap)}@media(max-width:760px){.hero-editorial .c-editorial-bottom{grid-template-columns:1fr}}

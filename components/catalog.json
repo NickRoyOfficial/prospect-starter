@@ -1,0 +1,218 @@
+[
+  {
+    "id": "hero-split",
+    "category": "Hero",
+    "label": "Split text and image",
+    "html": "sections/hero-split.html",
+    "css": "sections/hero-split.css",
+    "note": "Layout scaffold only. Supply the business-specific headline, media, and conversion path. Account for header height using --header-height."
+  },
+  {
+    "id": "hero-centered",
+    "category": "Hero",
+    "label": "Centered headline and wide media",
+    "html": "sections/hero-centered.html",
+    "css": "sections/hero-centered.css",
+    "note": "Layout scaffold only. Supply the business-specific headline, media, and conversion path. Account for header height using --header-height."
+  },
+  {
+    "id": "hero-editorial",
+    "category": "Hero",
+    "label": "Editorial headline with offset media",
+    "html": "sections/hero-editorial.html",
+    "css": "sections/hero-editorial.css",
+    "note": "Layout scaffold only. Supply the business-specific headline, media, and conversion path. Account for header height using --header-height."
+  },
+  {
+    "id": "benefits-cards",
+    "category": "Benefits",
+    "label": "Three icon cards",
+    "html": "sections/benefits-cards.html",
+    "css": "sections/benefits-cards.css",
+    "note": ""
+  },
+  {
+    "id": "benefits-bento",
+    "category": "Benefits",
+    "label": "Uneven bento with feature tile",
+    "html": "sections/benefits-bento.html",
+    "css": "sections/benefits-bento.css",
+    "note": ""
+  },
+  {
+    "id": "benefits-split",
+    "category": "Benefits",
+    "label": "Photography beside stacked benefits",
+    "html": "sections/benefits-split.html",
+    "css": "sections/benefits-split.css",
+    "note": ""
+  },
+  {
+    "id": "services-photo",
+    "category": "Services",
+    "label": "Photo cards",
+    "html": "sections/services-photo.html",
+    "css": "sections/services-photo.css",
+    "note": ""
+  },
+  {
+    "id": "services-list",
+    "category": "Services",
+    "label": "Numbered editorial rows",
+    "html": "sections/services-list.html",
+    "css": "sections/services-list.css",
+    "note": ""
+  },
+  {
+    "id": "services-feature",
+    "category": "Services",
+    "label": "Large feature with two small services",
+    "html": "sections/services-feature.html",
+    "css": "sections/services-feature.css",
+    "note": ""
+  },
+  {
+    "id": "testimonials-grid",
+    "category": "Testimonials",
+    "label": "Three equal quotation cards",
+    "html": "sections/testimonials-grid.html",
+    "css": "sections/testimonials-grid.css",
+    "note": "Use only with actual supplied, attributable testimonials and permission where needed. Omit the section if none exist. Never invent quotes, ratings, or customer identities."
+  },
+  {
+    "id": "testimonials-feature",
+    "category": "Testimonials",
+    "label": "Oversized quotation beside supporting quotes",
+    "html": "sections/testimonials-feature.html",
+    "css": "sections/testimonials-feature.css",
+    "note": "Use only with actual supplied, attributable testimonials and permission where needed. Omit the section if none exist. Never invent quotes, ratings, or customer identities."
+  },
+  {
+    "id": "testimonials-slider",
+    "category": "Testimonials",
+    "label": "Scrollable quotation rail",
+    "html": "sections/testimonials-slider.html",
+    "css": "sections/testimonials-slider.css",
+    "note": "Use only with actual supplied, attributable testimonials and permission where needed. Omit the section if none exist. Never invent quotes, ratings, or customer identities."
+  },
+  {
+    "id": "faq-split",
+    "category": "FAQ",
+    "label": "Heading beside accordion",
+    "html": "sections/faq-split.html",
+    "css": "sections/faq-split.css",
+    "note": ""
+  },
+  {
+    "id": "faq-columns",
+    "category": "FAQ",
+    "label": "Centered heading and two accordion columns",
+    "html": "sections/faq-columns.html",
+    "css": "sections/faq-columns.css",
+    "note": ""
+  },
+  {
+    "id": "faq-wide",
+    "category": "FAQ",
+    "label": "Wide stacked accordion",
+    "html": "sections/faq-wide.html",
+    "css": "sections/faq-wide.css",
+    "note": ""
+  },
+  {
+    "id": "cta-centered",
+    "category": "CTA",
+    "label": "Centered statement and actions",
+    "html": "sections/cta-centered.html",
+    "css": "sections/cta-centered.css",
+    "note": ""
+  },
+  {
+    "id": "cta-split",
+    "category": "CTA",
+    "label": "Statement beside actions",
+    "html": "sections/cta-split.html",
+    "css": "sections/cta-split.css",
+    "note": ""
+  },
+  {
+    "id": "footer-columns",
+    "category": "Footer",
+    "label": "Brand and three link columns",
+    "html": "sections/footer-columns.html",
+    "css": "sections/footer-columns.css",
+    "note": ""
+  },
+  {
+    "id": "footer-compact",
+    "category": "Footer",
+    "label": "Compact horizontal footer",
+    "html": "sections/footer-compact.html",
+    "css": "sections/footer-compact.css",
+    "note": ""
+  },
+  {
+    "id": "footer-statement",
+    "category": "Footer",
+    "label": "Large statement above utility rows",
+    "html": "sections/footer-statement.html",
+    "css": "sections/footer-statement.css",
+    "note": ""
+  },
+  {
+    "id": "nav-inline",
+    "category": "Navigation",
+    "label": "Brand with wrapping navigation",
+    "html": "sections/nav-inline.html",
+    "css": "sections/nav-inline.css",
+    "note": ""
+  },
+  {
+    "id": "nav-disclosure",
+    "category": "Navigation",
+    "label": "Brand with compact native menu",
+    "html": "sections/nav-disclosure.html",
+    "css": "sections/nav-disclosure.css",
+    "note": ""
+  },
+  {
+    "id": "button-solid",
+    "category": "Buttons",
+    "label": "Solid action",
+    "html": "sections/button-solid.html",
+    "css": "sections/button-solid.css",
+    "note": ""
+  },
+  {
+    "id": "button-outline",
+    "category": "Buttons",
+    "label": "Outlined action",
+    "html": "sections/button-outline.html",
+    "css": "sections/button-outline.css",
+    "note": ""
+  },
+  {
+    "id": "button-pill",
+    "category": "Buttons",
+    "label": "Rounded action",
+    "html": "sections/button-pill.html",
+    "css": "sections/button-pill.css",
+    "note": ""
+  },
+  {
+    "id": "social-circles",
+    "category": "Social",
+    "label": "Outlined icon circles",
+    "html": "sections/social-circles.html",
+    "css": "sections/social-circles.css",
+    "note": "Include only profiles with verified URLs. Remove networks the business does not use."
+  },
+  {
+    "id": "social-labels",
+    "category": "Social",
+    "label": "Icons with visible labels",
+    "html": "sections/social-labels.html",
+    "css": "sections/social-labels.css",
+    "note": "Include only profiles with verified URLs. Remove networks the business does not use."
+  }
+]

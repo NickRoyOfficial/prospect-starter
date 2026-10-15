@@ -1,0 +1,1 @@
+.cta-centered .c-cta-split{display:grid;grid-template-columns:1.5fr 1fr;align-items:center;gap:var(--c-gap)}.cta-centered .c-center .c-actions{justify-content:center}@media(max-width:760px){.cta-centered .c-cta-split{grid-template-columns:1fr}}

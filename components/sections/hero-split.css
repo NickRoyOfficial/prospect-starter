@@ -1,0 +1,1 @@
+.hero-split .c-hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:var(--c-gap)}@media(max-width:760px){.hero-split .c-hero-grid{grid-template-columns:1fr}}

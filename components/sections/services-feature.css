@@ -1,0 +1,1 @@
+.services-feature .c-service-feature{display:grid;grid-template-columns:1.5fr 1fr;gap:var(--c-gap)}@media(max-width:760px){.services-feature .c-service-feature{grid-template-columns:1fr}}

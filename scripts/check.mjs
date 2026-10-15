@@ -13,6 +13,8 @@ for (const file of files) {
   }
   if (extname(file) !== '.html') continue;
   const source = await readFile(file, 'utf8');
+  if (/\{\{[^}]+\}\}/.test(source)) fail(`Unresolved component tokens: ${file}`);
+  if (/data-media-placeholder\b/.test(source)) fail(`Replace component media slots before publishing: ${file}`);
   const ids = [...source.matchAll(/\sid\s*=\s*["']([^"']+)["']/g)].map(m => m[1]);
   if (new Set(ids).size !== ids.length) fail(`Duplicate IDs: ${file}`);
   for (const match of source.matchAll(/\s(?:src|href)\s*=\s*["']([^"']+)["']/g)) {
