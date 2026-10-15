@@ -8,8 +8,8 @@ export async function buildCatalog(destination) {
   const catalog = JSON.parse(await readFile('components/catalog.json', 'utf8'));
   await mkdir(join(destination, 'preview'), { recursive: true });
   await cp('components', destination, { recursive: true });
-  await cp('public/css', join(destination, 'css'), { recursive: true });
-  await cp('public/js', join(destination, 'js'), { recursive: true });
+  await cp('references/vanilla/css', join(destination, 'css'), { recursive: true });
+  await cp('references/vanilla/js', join(destination, 'js'), { recursive: true });
   await mkdir(join(destination, 'assets'), { recursive: true });
   await cp('components/icons.svg', join(destination, 'assets/icons.svg'));
   await cp('components/catalog.html', join(destination, 'index.html'));

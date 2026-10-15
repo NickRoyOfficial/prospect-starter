@@ -5,11 +5,15 @@ const root = resolve('public');
 let errors = 0;
 function fail(message) { console.error(message); errors++; }
 async function walk(dir) { const entries = await readdir(dir, { withFileTypes: true }); const nested = await Promise.all(entries.map(e => e.isDirectory() ? walk(resolve(dir, e.name)) : resolve(dir, e.name))); return nested.flat(); }
-const files = [...await walk(root), ...await walk(resolve('scripts')), ...await walk(resolve('test'))];
+const files = [resolve('index.html'), ...await walk(resolve('src')), ...await walk(root), ...await walk(resolve('scripts')), ...await walk(resolve('test'))];
 for (const file of files) {
   if (['.js', '.mjs'].includes(extname(file))) {
     const result = spawnSync(process.execPath, ['--check', file], { encoding: 'utf8' });
     if (result.status !== 0) fail(result.stderr);
+  }
+  if (['.tsx', '.jsx'].includes(extname(file))) {
+    const component = await readFile(file, 'utf8');
+    if (/\{\{[a-zA-Z_][a-zA-Z_0-9]*\}\}/.test(component) || /data-media-placeholder\b/.test(component)) fail(`Unresolved component placeholder: ${file}`);
   }
   if (extname(file) !== '.html') continue;
   const source = await readFile(file, 'utf8');
@@ -23,8 +27,9 @@ for (const file of files) {
     if (value.startsWith('#')) { if (value.length > 1 && !ids.includes(value.slice(1))) fail(`Missing anchor ${value}: ${file}`); continue; }
     try {
       const clean = decodeURIComponent(value.split(/[?#]/)[0]);
-      let target = clean.startsWith('/') ? resolve(root, '.' + clean) : resolve(dirname(file), clean);
-      if (target !== root && !target.startsWith(root + sep)) throw new Error('Outside public');
+      const resourceRoot = file === resolve('index.html') ? resolve('.') : root;
+      let target = clean.startsWith('/') ? resolve(resourceRoot, '.' + clean) : resolve(dirname(file), clean);
+      if (target !== resourceRoot && !target.startsWith(resourceRoot + sep)) throw new Error('Outside source root');
       if ((await stat(target)).isDirectory()) target = resolve(target, 'index.html');
       await stat(target);
     } catch { fail(`Missing local resource ${value}: ${file}`); }

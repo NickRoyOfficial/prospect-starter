@@ -1,56 +1,48 @@
 # Prospect starter
 
-Reusable infrastructure and an optional component library for static prospect websites in any industry. The deployed starter page is intentionally empty. Choose from 27 layout variants as needed; no business copy, branding, or photos are assumed. No external runtime dependencies. See components/README.md.
+React + TypeScript + Vite + Tailwind CSS, with shadcn/ui and Lucide already configured. Clone this foundation for each new prospect, then create the business-specific design. The production shell starts empty.
 
 ## Start a prospect
-1. Copy this repository into a separate prospect repository. If you enable GitHub's **Template repository** setting, use **Use this template** for each new business. Copying the files into an existing repository also works. If using git clone, set origin to the new prospect repository before pushing.
-2. Fill in BRIEF.md with verified facts, approved design decisions, assets, source links, and the target deployment.
-3. Change `name` in wrangler.jsonc to the approved Cloudflare Worker name. Keep assets in public/.
-4. Design the page in public/index.html. Set project-specific CSS variables in public/css/tokens.css and put custom styles in public/css/site.css. Add its stylesheet link when you create it.
-5. Run the commands below. Check desktop, mobile, keyboard interaction, and any feature used before deploying.
-
-Requires Node.js 20 or newer. No npm install is needed for preview, checks, or tests.
+1. Copy this repository into the approved prospect repository. GitHub's optional Template repository setting enables Use this template. When cloning with Git, change origin before pushing prospect work.
+2. Use Node.js 22.12 or newer and run `npm ci` once. The dependency versions are pinned and package-lock.json is committed.
+3. Fill BRIEF.md and set the approved Worker name in wrangler.jsonc.
+4. Design src/App.tsx and project-specific sections. Customize src/index.css and use assets under public/assets/.
+5. Check the actual page, run the relevant commands below, and deploy to the approved target.
 
 | Command | Purpose |
 | --- | --- |
-| `npm run catalog` | Visual component library with variant, theme, and viewport controls at http://127.0.0.1:8001. |
-| `npm run section -- --list` | List reusable layout IDs; select just the relevant source for each project. |
-| `npm run dev` | Local preview at http://127.0.0.1:8000. Set PORT to change it. |
-| `npm run check` | Syntax, local resource, markup, and configuration checks. |
-| `npm test` | Draft URL, endpoint validation, and preview-server boundary tests. |
-| `npm run deploy` | Deploy with Wrangler 4 using your Cloudflare authentication. Blocks the unchanged starter Worker name. |
+| `npm run dev` | Vite development server. Open its printed local URL. |
+| `npm run dev -- --open /?ui=1` | Development-only shadcn control preview. |
+| `npm run check` | TypeScript, script syntax, local resources, and placeholder checks. |
+| `npm test` | Form-helper security, preview-server boundaries, and reference-catalog tests. |
+| `npm run build` | Type-check and build the production site into dist/. |
+| `npm run preview` | Preview a production build locally. |
+| `npm run test:browser` | Desktop/mobile/short viewport control tests. Install Chromium once with `npx playwright install chromium` if needed. An existing binary can be supplied via PLAYWRIGHT_CHROMIUM_EXECUTABLE. |
+| `npm run catalog` | Separate visual browser for 27 HTML/CSS layout references, port 8001. |
+| `npm run section -- --list` | Concise reference inventory. A selected ID prints only its HTML; `--css` prints common and selected CSS. |
+| `npm run ui:add -- component-name` | Add a missing shadcn control using the pinned CLI. Do not reinitialize. Requires access to the shadcn registry. |
+| `npm run deploy` | Block an unchanged starter name, build, then deploy dist/ with Wrangler 4 and your Cloudflare authentication. |
 
-Cloudflare Git builds: production branch is the prospect's approved branch, build command is empty, deploy command is `npm run deploy`, and repository root is `/`. Files under public/ are the static assets. Authentication belongs in Cloudflare or your environment, never in the repository.
-
-## Shared files
-- AGENTS.md: project standards and efficient agent workflow.
-- BRIEF.md: the compact source of truth for each business.
-- public/css/: reset, customizable tokens, and optional layout/behavior utilities.
-- public/js/: optional UI behaviors and configurable form handling.
-- scripts/: dependency-free preview and checks, plus the deployment launcher.
-- test/: reusable foundation checks. These do not replace rendered browser QA.
-
-## Optional UI hooks
-Shared scripts do nothing when matching elements are absent. Use real buttons, labels, and descriptive accessible names in the page design.
-
-| Feature | Markup contract |
-| --- | --- |
-| Toggle | Button `data-toggle="panel-id"` with `aria-expanded`; target has that ID and starts `hidden` when collapsed. Escape closes expanded panels. Page-specific CSS controls its presentation. |
-| Dialog | Native `dialog id="dialog-id" data-dialog`; opener has `data-dialog-open="dialog-id"`; close button inside has `data-dialog-close`. Label the dialog with `aria-labelledby` or `aria-label`. Native Escape and focus management apply. |
-| Gallery | An element with `id` and `data-gallery`. Design its child layout in site CSS. External buttons use `data-gallery-prev="id"` and `data-gallery-next="id"`. Supply accessible button labels and a gallery label. Supports keyboard arrows and native touch scrolling. |
-| Reveal | Add `data-reveal` to a section or element. Content stays visible without JS and with reduced motion. |
-| Accordion | Use native `details` and `summary`; no script required. |
+## Where work belongs
+- src/App.tsx: the actual business page. src/main.tsx mounts React.
+- src/components/ui/: 12 installed shadcn controls: button, input, label, textarea, card, accordion, dialog, sheet, navigation-menu, carousel, separator, select.
+- src/components/sections/: add selected, business-specific React sections as needed.
+- src/index.css: Tailwind imports, editable semantic theme variables, focus, reduced-motion, and touch defaults. Put the dark class on the document root for dark sites so overlays share the theme.
+- src/components/inquiry-form.tsx: optional form shell with configurable behavior. src/hooks/use-inquiry-form.ts and src/lib/form-utils.js handle drafts and endpoint acceptance.
+- components/: 27 industry-neutral HTML/CSS layout references with a visual catalog. Convert selected ideas into React; do not paste HTML attributes or old DOM initialization scripts into JSX unchanged.
+- references/vanilla/: archived foundation used by the legacy layout catalog. It is not copied into the production build.
+- src/dev/ui-showcase.tsx: development-only controls preview, removed from production by Vite.
+- AGENTS.md and BRIEF.md: efficient workflow instructions and the prospect's source of truth.
 
 ## Forms
-Use `form[data-form]` with labeled fields and a submit button. A `[data-form-status]` region is created if absent. Fields use their `name` values as message labels. No mode stores visitor details in the browser.
+Compose labeled fields inside InquiryForm and pass an explicit config: `{mode:"endpoint", action:"https://…"}`, `{mode:"mailto", recipient:"…"}`, `{mode:"sms", recipient:"…"}`, or `{mode:"copy"}`. The hook can also be used without the shell for a custom layout. Native required/type validation applies; field names become message labels.
 
-| Mode | Configuration and behavior |
-| --- | --- |
-| `data-form="endpoint"` | Explicit HTTPS `action` for an authorized backend. Posts FormData, checks HTTP acceptance, restores controls after errors, and times out after 20 seconds. The endpoint must handle spam protection, validation, delivery, and CORS where relevant. |
-| `data-form="mailto"` | Set `data-recipient` to the business email; optional `data-subject`. Displays a reviewable draft and an email-app link. Sends nothing automatically. |
-| `data-form="sms"` | Set `data-recipient` to the business phone. Displays a reviewable draft and messaging-app link. Device support varies. Sends nothing automatically. |
-| `data-form="copy"` | Copies the inquiry or offers selectable text when clipboard access is unavailable. Sends nothing. |
+Endpoint mode posts FormData, checks HTTP acceptance, times out after 20 seconds, and shows errors without claiming delivery. The backend must provide validation, spam protection, actual delivery, and CORS when relevant. Mailto/SMS modes show a reviewable draft and a link; the visitor sends it. Copy mode offers selectable text when clipboard access is unavailable. Files require endpoint mode. No mode stores visitor information in local storage.
 
-Unknown or missing modes show a configuration error. Draft modes reject file inputs; use a real endpoint for uploads. No mode treats a demo interaction as a delivered inquiry. `prospect:form-success` fires only for an accepted endpoint response; `prospect:form-error` fires on an error.
+## Cloudflare
+Use the approved prospect branch and repository root `/`. For Git builds leave the build command empty and set deploy command to `npm run deploy`; the deploy script performs the build. wrangler.jsonc serves `./dist`, not the source/public directory. Keep authentication outside Git. Confirm the live deployment after a successful commit/build.
 
-Keep concept sites noindex and clearly identify independent concepts. Replace metadata and add the proper status disclosure as part of each business-specific design. The root-level scripts and documentation are outside the deployed public directory.
+The shared starter is intentionally undeployed and noindex. It includes no business claims, testimonials, company imagery, or page design. Review production content, metadata, concept disclosure, SEO/rendering needs, and the real form destination for an authorized official launch.
+
+## Component provenance
+The shadcn CLI registry was unreachable in the setup environment. Installed controls were therefore copied from the official shadcn/ui repository at a recorded commit, with import paths adapted. See THIRD_PARTY_NOTICES.md for provenance and the MIT license. They are actual shadcn source, not hand-built substitutes. components.json supports future normal CLI additions.

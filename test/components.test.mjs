@@ -20,7 +20,7 @@ test('catalog previews resolve placeholders, preserve variant identity, and load
       for (const [, id] of html.matchAll(/aria-labelledby="([^"]+)"/g)) assert.ok(ids.includes(id), item.id+' label target');
       for (const [, path] of html.matchAll(/(?:src|href)="(\/[^"?#]+)(?:#[^"]*)?"/g)) await readFile(join(directory, path));
     }
-    const starter = await readFile('public/index.html', 'utf8');
+    const starter = await readFile('src/App.tsx', 'utf8');
     assert.ok(!starter.includes('c-hero') && !starter.includes('{{'));
   } finally { await rm(directory, { recursive: true, force: true }); }
 });

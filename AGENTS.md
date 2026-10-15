@@ -1,42 +1,33 @@
 # Prospect starter instructions
 
-## Start here
-- Foundation source: https://github.com/NickRoyOfficial/prospect-starter
-- This is an industry-agnostic static website foundation, not a page template.
-- Read BRIEF.md and the relevant source before editing. Treat the current user request as authoritative.
-- Keep page composition, hero, imagery, fonts, colors, and copy specific to the business. Keep the deployed starter shell empty. Optional components/ contains industry-neutral layout variants that can be selected for individual projects.
-- Populate BRIEF.md as facts, source links, assets, and decisions become available. Keep it brief and current.
-- Use GitHub for source and the approved Cloudflare project for hosting. Do not substitute another platform without instruction.
+## Foundation
+- Source: https://github.com/NickRoyOfficial/prospect-starter . This repository now uses React + TypeScript + Vite + Tailwind CSS with shadcn/ui and Lucide. Read BRIEF.md for the business and the current user request for scope.
+- Keep the production shell in src/App.tsx empty until a business-specific design is authorized. Put assets in public/assets/. Keep copy, fonts, colors, hero, and composition specific to each prospect.
+- Common controls are already in src/components/ui/. Reuse them instead of writing equivalent controls or rerunning initialization. components.json configures future shadcn additions; dependencies and tooling versions are locked in package-lock.json.
+- The 27 components/ layouts are HTML/CSS references. Use npm run section -- --list for a concise inventory. Read and convert only selected variants into src/components/sections/. Do not mass-convert the catalog or load old DOM scripts into the React app.
+- references/vanilla/ supports the separate legacy layout catalog. The catalog and src/dev/ UI preview are not production pages. The UI preview is available only during development at /?ui=1.
+- Fill BRIEF.md with verified facts, source links, approved decisions, asset mapping, and deployment details. Avoid duplicate documentation.
 
 ## Work efficiently
-- For section composition, use npm run section -- --list for a concise inventory, then read only selected variant HTML/CSS and components/base.css. Mix suitable distributions; do not reuse the same entire page composition across prospects. Replace every token and media slot before deployment. Testimonials require verified content.
-- Reuse public/css and public/js. Load only relevant files and ranges. Avoid repository dumps, repetitive searches, dependency installation, or repeated checks without a reason.
-- Use native HTML, CSS, browser APIs, and the existing Node scripts first. Do not add frameworks or libraries for routine UI.
-- Make targeted changes and preserve approved work. Do not redesign unrelated sections.
-- Batch independent reads. Keep dependent changes and GitHub writes sequential. Do not delegate unless explicitly requested.
-- Where terminal push is unavailable, commit multiple text files together using GitHub create_tree entries with inline content. Use blobs only for binary assets. Create one commit, then update the branch with its expected head SHA. Do not upload every text file in a separate commit.
-- Reuse available browser/runtime tools. Do not repeatedly install a missing browser. Report an actual verification limitation accurately.
-- Keep progress and final responses short. Stop when the authorized scope is complete and checks pass.
+- Reuse the pinned dependencies and lockfile. Run npm ci when dependencies are missing or the lockfile changed; do not reinstall otherwise. Do not add a framework or package for routine behavior already supported.
+- Read only relevant files and ranges. Avoid repository dumps, repeated searches, and repeated documentation reads. Batch independent reads; keep dependent edits and writes sequential.
+- Make targeted changes, preserve approved sections, and do not redesign unrelated work. Do not delegate unless explicitly requested.
+- Where terminal push is unavailable, send multiple text files in one GitHub create_tree using inline content, create one commit, then update the branch against its expected head. Use blobs for binary assets. Do not commit each file separately.
+- Use the existing browser/runtime. Report concrete limitations rather than repeatedly attempting the same unavailable installation. Keep updates and delivery concise.
 
-## Business accuracy and assets
-- Use verified business facts and supplied assets. Never invent services, service areas, reviews, ratings, credentials, guarantees, prices, or response times.
-- Inspect supplied photos together and establish an asset map once. Optimize them before committing and use descriptive filenames.
-- Ask for genuinely missing business photography before implementing photo-led sections. Source stock only when authorized; never present it as company work.
-- Obtain missing repository and deployment details before publishing. Existing authorization persists; do not ask repeatedly.
-- Do not contact a prospect or send a test inquiry to a live destination.
+## Design, content, and accessibility
+- Produce professional, business-specific art direction. Shared controls and reference layouts do not define the final appearance. Vary typography, spacing, image treatment, proportions, colors, compositions, and purposeful motion.
+- Verify facts and prefer supplied company photography. Inspect photos together, choose the asset map once, and optimize images before committing. Ask for genuinely missing imagery; use stock only when authorized and never present it as company work.
+- Never invent reviews, quotes, ratings, credentials, guarantees, prices, services, service areas, statistics, or response times. Omit proof sections when verified material is unavailable. Use social links only for verified profiles.
+- Replace every reference token and media slot before publishing. Placeholders belong only in the reference catalog.
+- Use semantic HTML, labels, sufficient contrast, visible focus, readable text, comfortable touch targets, and responsive media. Account for navigation and safe areas in one-screen heroes using 100svh with a 100vh fallback; allow growth when content requires it.
+- Prefer the existing shadcn controls for interaction and CSS for routine motion. Respect reduced motion; essential content must work without animation or hover. Import only needed icons and components.
+- src/components/inquiry-form.tsx and src/hooks/use-inquiry-form.ts provide configurable inquiry handling. Pass a real authorized endpoint, explicit message recipient, or copy-only mode. Drafts are not sent automatically; endpoint acceptance is not proof of delivery. Never contact a prospect with a test inquiry.
 
-## Design and accessibility
-- Produce professional, business-specific layouts. Use the shared infrastructure without imposing one visual design across industries.
-- Implement semantic HTML, readable text, adequate contrast, visible focus, labeled fields, accessible controls, responsive media, and comfortable touch targets.
-- Choose and customize a hero scaffold only when it fits the approved business-specific design. If a one-screen hero is requested, use 100svh with a 100vh fallback, account for navigation and safe areas, and prevent ordinary viewport clipping. Allow growth when content or enlarged text requires it.
-- Use lightweight motion and respect reduced motion. Essential content must remain available without animation or hover.
-- Use native details for simple accordions and dialog for modals. Optional shared scripts activate only on matching data attributes.
-- Forms need a real, explicitly configured destination. Never simulate delivery or display success before acceptance. Draft modes prepare messages; the visitor sends them.
-
-## Verify and deliver
-- Run npm run check and npm test after relevant code changes. Run focused follow-up checks only after a failure or additional change.
-- Inspect representative desktop, mobile, and short viewports when browser controls are available. Verify affected menus, forms, galleries, dialogs, keyboard operation, and reduced motion. Report checks that could not be completed.
-- Before deployment, confirm the target repository/branch and replace the starter Worker name with the approved project's name.
-- Keep each prospect in its own repository. After cloning the starter, set origin to the approved prospect repository before pushing.
-- Commit authorized work. A successful commit does not establish a successful deployment; verify the intended build and live URL.
-- Keep the starter itself undeployed unless requested. Keep concepts noindex and clearly identified until an official launch is authorized.
+## Verify and deploy
+- Run npm run check, npm test, and npm run build after relevant source changes. Use npm run test:browser when interaction/responsiveness changes. Repeat only for new changes, failures, or unresolved concerns.
+- The reusable browser checks cover the development controls across desktop, mobile, and short/reduced-motion viewports. Also inspect each actual business page at representative sizes; framework tests do not establish its design quality.
+- GitHub holds source; Cloudflare hosts approved concepts. Keep prospects isolated and verify the intended repository, branch, remote, Worker name, and review URL. Preserve existing prospect stacks unless conversion is authorized.
+- npm run deploy blocks the unchanged starter Worker name, builds the site, and deploys dist/ using Wrangler. In Cloudflare Git builds use an empty build command and npm run deploy as the deploy command. Do not deploy this shared starter unless requested.
+- Commit authorized changes and verify the intended build on the live URL. Report unavailable checks, missing access, or deployment failures accurately. A commit alone does not prove deployment.
+- Keep concepts noindex and clearly identify independent concepts until an official launch is authorized. Do not ask for permission already granted.

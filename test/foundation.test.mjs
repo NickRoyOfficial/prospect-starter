@@ -4,7 +4,7 @@ import { once } from 'node:events';
 import { mkdtemp, mkdir, writeFile, symlink, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { messageFromEntries, buildDraftURL, endpointURL } from '../public/js/form-utils.js';
+import { messageFromEntries, buildDraftURL, endpointURL } from '../src/lib/form-utils.js';
 import { createPreviewServer } from '../scripts/preview.mjs';
 
 test('drafts encode user content without injecting recipients or message headers', () => {

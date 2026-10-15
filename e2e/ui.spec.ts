@@ -1,0 +1,53 @@
+import { test, expect } from "@playwright/test"
+
+test("starter stays blank and the optional UI preview fits the viewport", async ({ page }, info) => {
+  const errors: string[] = []
+  page.on("pageerror", error => errors.push(error.message))
+  await page.goto("/")
+  await expect(page.locator("main#main")).toBeAttached()
+  await expect(page.getByRole("heading")).toHaveCount(0)
+  await page.goto("/?ui=1")
+  await expect(page.getByRole("heading", { name: "Shared UI controls" })).toBeVisible()
+  await expect(page.getByRole("combobox", { name: "Service" })).toBeVisible()
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  await page.screenshot({ path: `test-results/${info.project.name}-controls.png`, fullPage: true })
+  expect(errors).toEqual([])
+})
+
+test("dialog, menu, accordion, and select support keyboard interaction", async ({ page }) => {
+  await page.goto("/?ui=1")
+  const trigger = page.getByRole("button", { name: "Open dialog", exact: true })
+  await trigger.click()
+  await expect(page.getByRole("dialog", { name: "Dialog preview" })).toBeVisible()
+  await expect(page.getByRole("textbox", { name: "Dialog field" })).toBeFocused()
+  await page.keyboard.press("Escape")
+  await expect(trigger).toBeFocused()
+  await page.getByRole("button", { name: "Open menu", exact: true }).click()
+  await expect(page.getByRole("dialog", { name: "Navigation preview" })).toBeVisible()
+  await page.keyboard.press("Escape")
+  await page.getByRole("button", { name: "How does reuse work?", exact: true }).click()
+  await expect(page.getByText("Import only the controls needed for the selected section and customize their appearance.")).toBeVisible()
+  await page.getByRole("combobox", { name: "Service" }).click()
+  await page.getByRole("option", { name: "Option B", exact: true }).click()
+  await expect(page.locator('input[name="Service"]')).toHaveValue("option-b")
+})
+
+test("inquiry prepares local text, carousel moves, and dark theme reaches portals", async ({ page }) => {
+  let outbound = 0
+  page.on("request", request => { if (request.method() === "POST") outbound++ })
+  await page.goto("/?ui=1")
+  await page.getByLabel("Name", { exact: true }).fill("Preview test")
+  await page.getByLabel("Email", { exact: true }).fill("preview@example.com")
+  await page.getByLabel("Notes", { exact: true }).fill("Local preparation only.")
+  await page.getByRole("button", { name: "Prepare inquiry", exact: true }).click()
+  await expect(page.getByRole("status")).toContainText(/Copied|Nothing has been sent/)
+  expect(outbound).toBe(0)
+  const previous = page.getByRole("button", { name: "Previous slide", exact: true })
+  await expect(previous).toBeDisabled()
+  await page.getByRole("button", { name: "Next slide", exact: true }).click()
+  await expect(previous).toBeEnabled()
+  await page.getByRole("button", { name: "Switch to dark theme" }).click()
+  await expect(page.locator("html")).toHaveClass(/dark/)
+  await page.getByRole("button", { name: "Open dialog", exact: true }).click()
+  expect(await page.getByRole("dialog", { name: "Dialog preview" }).evaluate(el => getComputedStyle(el).backgroundColor)).toBe("rgb(19, 19, 19)")
+})
