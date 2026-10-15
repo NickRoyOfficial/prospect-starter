@@ -1,0 +1,21 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; min-height: 100svh; }
+body, button, input, select, textarea { font-family: var(--font-body, system-ui, sans-serif); }
+body { line-height: 1.5; }
+button, input, select, textarea { font: inherit; }
+button, select { cursor: pointer; }
+button:disabled { cursor: default; }
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+img, video { height: auto; }
+iframe { max-width: 100%; }
+h1, h2, h3, h4, h5, h6, p { margin-block: 0; overflow-wrap: break-word; }
+button, input, textarea, select { min-width: 0; }
+textarea { resize: vertical; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--color-focus, currentColor); outline-offset: 4px; }
+:target { scroll-margin-block-start: var(--anchor-offset, 6rem); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

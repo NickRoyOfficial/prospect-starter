@@ -1,0 +1,19 @@
+body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
+.container { width: min(var(--content-width), calc(100% - 2 * var(--page-gutter))); margin-inline: auto; }
+.stack { display: flex; flex-direction: column; gap: var(--gap, var(--space-4)); }
+.cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap, var(--space-4)); }
+.auto-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--column-min, 16rem)), 1fr)); gap: var(--gap, var(--space-6)); }
+.prose-width { max-width: var(--text-width); }
+.media-cover { width: 100%; height: 100%; object-fit: cover; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.skip-link { position: fixed; z-index: 1000; inset: 1rem auto auto 1rem; padding: .75rem 1rem; background: var(--color-bg); color: var(--color-text); transform: translateY(-200%); }
+.skip-link:focus { transform: none; }
+/* JS adds the pending class only when an observer is available. Content is visible otherwise. */
+[data-reveal].reveal-pending { opacity: 0; transform: translateY(var(--reveal-distance, 1.25rem)); transition: opacity var(--motion-reveal) var(--ease-out), transform var(--motion-reveal) var(--ease-out); }
+[data-reveal].reveal-visible { opacity: 1; transform: none; }
+[data-gallery] { overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: x proximity; }
+[data-gallery] > * { scroll-snap-align: start; }
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal].reveal-pending { opacity: 1; transform: none; }
+}
