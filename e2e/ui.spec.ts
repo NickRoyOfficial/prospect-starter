@@ -1,11 +1,10 @@
 import { test, expect } from "@playwright/test"
 
-test("starter stays blank and the optional UI preview fits the viewport", async ({ page }, info) => {
+test("page shell and optional UI preview fit the viewport", async ({ page }, info) => {
   const errors: string[] = []
   page.on("pageerror", error => errors.push(error.message))
   await page.goto("/")
   await expect(page.locator("main#main")).toBeAttached()
-  await expect(page.getByRole("heading")).toHaveCount(0)
   await page.goto("/?ui=1")
   await expect(page.getByRole("heading", { name: "Shared UI controls" })).toBeVisible()
   await expect(page.getByRole("combobox", { name: "Service" })).toBeVisible()

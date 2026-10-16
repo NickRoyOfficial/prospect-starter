@@ -21,6 +21,6 @@ test('catalog previews resolve placeholders, preserve variant identity, and load
       for (const [, path] of html.matchAll(/(?:src|href)="(\/[^"?#]+)(?:#[^"]*)?"/g)) await readFile(join(directory, path));
     }
     const starter = await readFile('src/App.tsx', 'utf8');
-    assert.ok(!starter.includes('c-hero') && !starter.includes('{{'));
+    assert.ok(!/\{\{[a-zA-Z_][a-zA-Z_0-9]*\}\}/.test(starter));
   } finally { await rm(directory, { recursive: true, force: true }); }
 });

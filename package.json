@@ -16,7 +16,12 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "ui:add": "npx shadcn@4.21.5 add",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "prepare": "npm run build",
+    "start:prospect": "node scripts/start-prospect.mjs",
+    "review": "node scripts/review.mjs",
+    "test:foundation": "playwright test e2e/ui.spec.ts",
+    "verify": "npm run check && npm test && npm run build"
   },
   "dependencies": {
     "class-variance-authority": "0.7.1",

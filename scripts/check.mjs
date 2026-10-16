@@ -27,7 +27,7 @@ for (const file of files) {
     if (value.startsWith('#')) { if (value.length > 1 && !ids.includes(value.slice(1))) fail(`Missing anchor ${value}: ${file}`); continue; }
     try {
       const clean = decodeURIComponent(value.split(/[?#]/)[0]);
-      const resourceRoot = file === resolve('index.html') ? resolve('.') : root;
+      const resourceRoot = file === resolve('index.html') && !clean.startsWith('/assets/') ? resolve('.') : root;
       let target = clean.startsWith('/') ? resolve(resourceRoot, '.' + clean) : resolve(dirname(file), clean);
       if (target !== resourceRoot && !target.startsWith(resourceRoot + sep)) throw new Error('Outside source root');
       if ((await stat(target)).isDirectory()) target = resolve(target, 'index.html');
