@@ -1,0 +1,9 @@
+extends: existence
+message: "Em dash. Use a comma, a colon, or two sentences."
+level: error
+nonword: true
+action:
+  name: remove
+tokens:
+  - '—'
+  - '\s--\s'

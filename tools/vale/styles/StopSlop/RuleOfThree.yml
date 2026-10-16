@@ -1,0 +1,6 @@
+extends: existence
+message: "Rule-of-three list '%s'. Two items beat three."
+level: suggestion
+nonword: true
+raw:
+  - '(?:\b\w+,\s+\w+,\s+and\s+\w+\b)'

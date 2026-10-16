@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit fixture: a page with nothing to report</title>
+<style>
+  :root { --ink: #1f2320; --paper: #f7f6f2; --accent: #2f5d50; --radius: 8px; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, sans-serif; background: var(--paper); color: var(--ink); font-size: 16px; line-height: 1.5; }
+  main { width: min(100% - 2rem, 60rem); margin-inline: auto; }
+  nav a { display: inline-block; padding: 12px 10px; color: var(--ink); text-decoration: none; }
+  nav a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  section { padding-block: 48px; }
+  h1 { font-size: 40px; line-height: 1.1; margin: 0 0 16px; font-weight: 600; }
+  h2 { font-size: 28px; line-height: 1.2; margin: 0 0 16px; font-weight: 600; scroll-margin-top: 80px; }
+  p { margin: 0 0 16px; max-width: 60ch; }
+  button { font: inherit; padding: 12px 20px; background: var(--accent); color: #fff; border: 0; border-radius: var(--radius); min-height: 44px; }
+  input, textarea { font: inherit; font-size: 16px; padding: 12px; border: 1px solid #9a9a94; border-radius: var(--radius); min-height: 44px; width: 100%; max-width: 24rem; }
+  label { display: block; margin-bottom: 8px; }
+  img { max-width: 100%; height: auto; border-radius: var(--radius); display: block; }
+  footer { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 32px 0; }
+  footer a { display: inline-block; padding: 8px 0; color: var(--ink); }
+  .card { border: 1px solid #d8d6ce; border-radius: var(--radius); padding: 20px; }
+</style>
+</head>
+<body>
+<main>
+<section>
+  <nav aria-label="Primary"><a href="#services">Services</a> <a href="#contact">Contact</a></nav>
+  <h1>Garden maintenance in Hudson Valley</h1>
+  <p>Weekly mowing, hedge shaping and seasonal cleanups for homes in Wappinger and Fishkill.</p>
+  <button type="button">Book a visit</button>
+</section>
+<section id="services">
+  <h2>What we do</h2>
+  <div class="card">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='400' height='200' fill='%23b7c9b0'/%3E%3C/svg%3E" width="400" height="200" alt="A trimmed lawn with a stone path">
+    <p>Lawn care runs on a weekly schedule from April to November. Hedge work is booked by the job.</p>
+  </div>
+</section>
+<section id="contact">
+  <h2>Ask for a quote</h2>
+  <form>
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" autocomplete="name">
+    <label for="notes">What needs doing</label>
+    <textarea id="notes" name="notes" rows="3"></textarea>
+    <button type="submit">Send the request</button>
+  </form>
+</section>
+</main>
+<footer>
+  <div><strong>Hudson Garden Co.</strong><p>Wappinger Falls, NY</p></div>
+  <div><a href="#services">Services</a></div>
+</footer>
+</body>
+</html>

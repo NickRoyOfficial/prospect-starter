@@ -1,0 +1,10 @@
+extends: existence
+message: "Vague declarative '%s'. Name the specific thing instead."
+level: error
+ignorecase: true
+nonword: true
+raw:
+  - '(?:\bthe\s+(?:implications|consequences|reasons|stakes|risks|results)\s+(?:are|were)\s+\w+'
+  - '|\bthis\s+is\s+the\s+(?:deepest|hardest|real|core|central)\s+(?:problem|issue|question|point)'
+  - '|\bthis\s+(?:\w+ly\s+)?changes\s+everything'
+  - '|\bthat\s+changes\s+everything)'

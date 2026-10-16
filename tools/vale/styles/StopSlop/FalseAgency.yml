@@ -1,0 +1,10 @@
+# Subject noun is bound explicitly, per the Google Anthropomorphism warning about
+# 8 false positives per 2 real ones with an unbound verb list.
+extends: existence
+message: "False agency: '%s' gives an inanimate thing a human verb. Name the person who acted."
+level: warning
+ignorecase: true
+nonword: true
+raw:
+  - '(?:\b(?:the\s+)?(?:complaint|decision|conversation|culture|market|data|process|system|framework|approach|narrative|momentum)\s+(?:becomes|emerges|shifts|moves|tells|rewards|decides|wants|knows|demands|reveals)\b'
+  - '|\b(?:lives\s+or\s+dies|takes\s+on\s+a\s+life\s+of\s+its\s+own)\b)'

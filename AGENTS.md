@@ -1,46 +1,66 @@
-# Prospect starter instructions
+# Prospect starter
 
-## Foundation
-- Source: https://github.com/NickRoyOfficial/prospect-starter . This repository now uses React + TypeScript + Vite + Tailwind CSS with shadcn/ui and Lucide. Read BRIEF.md for the business and the current user request for scope.
-- Keep the production shell in src/App.tsx empty until a business-specific design is authorized. Put assets in public/assets/. Keep copy, fonts, colors, hero, and composition specific to each prospect.
-- Common controls are already in src/components/ui/. Reuse them instead of writing equivalent controls or rerunning initialization. components.json configures future shadcn additions; dependencies and tooling versions are locked in package-lock.json.
-- Reuse src/components/sections/layouts.tsx first: Hero (split/photo/editorial), CardGrid (cards/bento/rows), PhotoCard, SplitSection, SectionHeading, CallToAction, FooterLayout (columns/compact), FAQ, FeedbackCarousel, and InquiryDialogForm. Import only needed exports. Development previews: /?layouts=1&variant=split (also photo/editorial). The 27 components/ HTML references are optional composition ideas; do not reconvert existing React sections.
-- references/vanilla/ supports the separate legacy layout catalog. The catalog and src/dev/ UI preview are not production pages. The UI preview is available only during development at /?ui=1.
-- Fill BRIEF.md with verified facts, source links, approved decisions, asset mapping, and deployment details. Avoid duplicate documentation.
+A React + Vite + Tailwind v4 + shadcn/ui foundation for one-page concept sites for local businesses. Each prospect gets a copy. The shell in `src/App.tsx` starts empty. The look comes from a direction preset plus a palette generated from the logo; the quality comes from an audit that runs before anyone looks at a screenshot.
 
-## Start immediately
-- Once a build is authorized and its destination repository is known, populate that remote from this starter BEFORE research, dependency installation, asset processing, or page design. Verify the initial commit exists remotely. Do not wait until the completed website to push.
-- If the repository already contains this starter, inspect it and reuse it. Preserve existing prospect work. Never overwrite another website or push prospect content to the starter.
-- Check the available GitHub write path first. Prefer an existing template copy or working Git push. When CLI authentication is unavailable, use the connected GitHub API immediately rather than troubleshooting credentials. scripts/start-prospect.mjs prepares a separate checkout and one upload bundle without dependencies; see docs/github-bootstrap.md.
+Read this whole file. BRIEF.md is the prospect's source of truth. Current user messages override both.
 
-## Work efficiently
-- Reuse the pinned dependencies and lockfile. Run npm ci when dependencies are missing or the lockfile changed; do not reinstall otherwise. Do not add a framework or package for routine behavior already supported.
-- Read only relevant files and ranges. Avoid repository dumps, repeated searches, and repeated documentation reads. Batch independent reads; keep dependent edits and writes sequential.
-- Make targeted changes, preserve approved sections, and do not redesign unrelated work. Do not delegate unless explicitly requested.
-- Where terminal push is unavailable, send multiple text files in one GitHub create_tree using inline content, create one commit, then update the branch against its expected head. Use blobs for binary assets. Do not commit each file separately.
-- Use an installed browser/runtime. Do not download a browser or add browser tooling for a prospect build. Use npm run review for one desktop/mobile/short screenshot pass and test affected interactions. If unavailable, use the hosted preview and state the limit.
-- Keep scope to the requested page. Do not build new generators, audit systems, component catalogs, or abstractions during a prospect build. Avoid full-file rewrites and serial per-file uploads. Keep updates and delivery concise.
+## Rules that never change
 
-## Design, content, and accessibility
-- Produce professional, business-specific art direction. Shared controls and reference layouts do not define the final appearance. Vary typography, spacing, image treatment, proportions, colors, compositions, and purposeful motion.
-- Verify facts and prefer supplied company photography. Inspect photos together, choose the asset map once, and optimize images before committing. Ask for genuinely missing imagery; use stock only when authorized and never present it as company work.
-- Never invent reviews, quotes, ratings, credentials, guarantees, prices, services, service areas, statistics, or response times. Omit proof sections when verified material is unavailable. Use social links only for verified profiles.
-- Replace every reference token and media slot before publishing. Placeholders belong only in the reference catalog.
-- Use semantic HTML, labels, sufficient contrast, visible focus, readable text, comfortable touch targets, and responsive media. Account for navigation and safe areas in one-screen heroes using 100svh with a 100vh fallback; allow growth when content requires it.
-- Prefer the existing shadcn controls for interaction and CSS for routine motion. Respect reduced motion; essential content must work without animation or hover. Import only needed icons and components.
-- src/components/inquiry-form.tsx and src/hooks/use-inquiry-form.ts provide configurable inquiry handling. Pass a real authorized endpoint, explicit message recipient, or copy-only mode. Drafts are not sent automatically; endpoint acceptance is not proof of delivery. Never contact a prospect with a test inquiry.
+- Facts. Never invent reviews, quotes, ratings, credentials, guarantees, prices, services, service areas, statistics, response times, awards, "free estimates" or "trusted by" claims. A claim with no source on the page is cut, not softened. Social links only for verified profiles. Write "unknown" in BRIEF.md rather than guess.
+- Assets. Prefer the business's own photography and the real logo file. Never present stock or generated imagery as the business, its people or its work. Never render a logo as styled text. Replace every placeholder and media slot before publishing.
+- Isolation. GitHub holds source, Cloudflare hosts concepts. One repository and one Worker per prospect, named for the business. Never push prospect content to the starter. Concepts stay noindex and labelled as concepts until an official launch is authorised.
+- Contact. Never contact a prospect, never send a test inquiry, never ask for passwords or secrets in chat. Forms get a real authorised destination, or copy mode.
+- Scope. No new frameworks, generators, catalogues or abstractions during a prospect build. Targeted edits. Preserve approved sections.
 
-## Verify and deploy
-- Run npm run check and npm run build once after page implementation, plus targeted interaction checks and npm run review. Run npm test and npm run test:foundation when shared controls, hooks, scripts, or dependencies change, not for every page composition or styling change. Repeat only checks affected by a fix. npm run verify is the full foundation check.
-- The reusable browser checks cover the development controls across desktop, mobile, and short/reduced-motion viewports. Also inspect each actual business page at representative sizes; framework tests do not establish its design quality.
-- GitHub holds source; Cloudflare hosts approved concepts. Keep prospects isolated and verify the intended repository, branch, remote, Worker name, and review URL. Preserve existing prospect stacks unless conversion is authorized.
-- Keep Cloudflare Git build settings compatible with the existing default: empty build command, npx wrangler deploy. package.json prepare runs npm run build during dependency installation, so dist/ exists before deployment. Do not instruct the user to change working dashboard settings. npm run deploy remains an optional local build-and-deploy command. Set the prospect Worker name; never deploy the shared starter unless requested.
-- Commit authorized changes and verify the intended build on the live URL. Report unavailable checks, missing access, or deployment failures accurately. A commit alone does not prove deployment.
-- Keep concepts noindex and clearly identify independent concepts until an official launch is authorized. Do not ask for permission already granted.
+## Workflow
 
-## Testimonial UI standard
-- Use TestimonialCards from src/components/sections/layouts.tsx for a small set of verified reviews. It composes the installed shadcn Card and CardContent. Default to three compact equal-height cards on desktop, two on tablets, and a readable single-column mobile stack.
-- Include a restrained quote mark, 16–18px review text with comfortable line height, and bottom-aligned author attribution. Use only real portraits or neutral initials. Dates or roles must come from the source. Never invent ratings, stars, identities, review counts, or endorsements.
-- Keep section headings proportionate to the cards. Avoid giant full-width slides for a few short reviews, excessive empty space, floating/overlapping controls, and developer-facing source notes in the main visual hierarchy.
-- Use carousels only when the number of reviews or the approved composition warrants them. Controls must be in a separate normal-flow row, at least 44px, with visible focus/hover states, meaningful accessible names, and no inherited translate offset. Preserve touch/keyboard interaction and reduced-motion behavior.
-- Adapt colors, borders, corner radius, and spacing to each business without weakening this hierarchy. The standard is a quality baseline, not one identical section copied everywhere.
+### 1. Start
+
+Once a build is authorised and the destination repository is known, populate it from this starter and verify the first commit exists remotely before any research or design (`node scripts/start-prospect.mjs --help`, docs/github-bootstrap.md). If the repository already holds this starter, reuse it. Where terminal push is unavailable, use the connected GitHub API: one tree with inline text files and blobs for binaries, one commit, branch updated against its expected head. Run `npm ci` only when node_modules is missing or the lockfile changed.
+
+Finish when: the remote has the starter commit, and BRIEF.md names the repository, branch, Worker and conversion goal.
+
+### 2. Research
+
+With an existing site: `npm run capture -- <url> [more public urls]`, then read `research/facts.json`, `research/design.json` and `research/current-site-audit.json` (docs/research.md). Without one: their listings, socials and whatever the owner sent. Every fact in BRIEF.md carries its source. Inspect supplied photos once and write the asset map. Ask for missing photos and the logo now, naming the subjects you need. One focused research pass; expand only to close a specific gap.
+
+Finish when: BRIEF.md identity, verified facts, assets and pending items are filled in, and the open questions are listed rather than guessed.
+
+### 3. Plan (checkpoint)
+
+Pick a direction from docs/directions.md and give one sentence of reasoning. Run `npm run brand -- public/assets/logo.svg` (or `--primary "#hex"` when there is no usable logo) and look at `test-results/brand/swatches.html`. Write one compact plan: direction, palette, hero (variant, photo, headline, primary action, form), section list by layout family, photo map, open questions. Present it and wait. "Build" authorises everything that follows; do not ask again. Targeted revisions later do not restart the plan.
+
+Finish when: the user says build, or the direction was already approved.
+
+### 4. Build
+
+Set `data-direction` on `<html>` in index.html and load that direction's fonts (docs/directions.md). Compose `src/App.tsx` from `src/components/sections/layouts.tsx` (Hero, CardGrid, PhotoCard, SplitSection, TestimonialCards, FAQ, CallToAction, FooterLayout, InquiryDialogForm) and the shadcn controls in `src/components/ui/`. The 27 HTML references in `components/` are composition ideas, not code to paste. Assets go in `public/assets/`, sized for the web. Copy follows docs/copy-rules.md; the look follows docs/design-tells.md. No hex, px or font literal inside a section: tokens from `src/index.css`, `src/brand.css` and `src/directions.css` only. Heroes fit one viewport (100svh with a 100vh fallback) and grow when content needs it; nothing is hidden with overflow clipping. Service businesses usually get a compact inquiry or booking form in the hero, matched to how they actually sell.
+
+Finish when: every section renders with real content and `npm run check` passes.
+
+### 5. Verify (the loop)
+
+1. `npm run audit`. Fix every FAIL. Run again. Up to four rounds. If a round adds failures, revert it and take the other route. A FAIL you believe is wrong is a bug in `scripts/audit/checks.js` or `scripts/audit/copy.mjs`: fix the check and add a fixture case, never work around it. Warnings are decisions: resolve them or write the reason in BRIEF.md.
+2. Open the screenshots in `test-results/audit/` (desktop-full, mobile-full, short, and every `*-open-*`) and review against docs/review-rubric.md. Write the located defects, fix them, re-run the audit, look again. Stop when a pass finds nothing, or after three passes; then report what is left.
+3. Cycle every reversible control open and closed once by hand: menu, select, dialog, drawer, accordion, carousel, and the form with an empty required field.
+4. `npm run build`. Run `npm test` only when shared controls, hooks, scripts or dependencies changed.
+
+Finish when: zero FAIL across desktop, mobile and short; a rubric pass with no defects that names the screenshots it looked at; build green.
+
+### 6. Deliver (checkpoint)
+
+Commit authorised changes in one commit. Keep Cloudflare's Git build settings as they are: empty build command, `npx wrangler deploy`; the `prepare` hook builds `dist/`. Set the prospect's Worker name. Confirm the live URL shows this build; a push is not a deployment. Report the link, the direction, the audit totals, and anything unverified, in a few sentences. Not code, not plans, not logs.
+
+Finish when: the review URL opens the intended build.
+
+## How rules change here
+
+Corrections are logged automatically (`.codex/hooks.json` runs `scripts/correction.mjs`; see docs/corrections.md). `npm run corrections` groups them by theme. A theme seen three times becomes, in this order of preference: a check in `scripts/audit/checks.js` or `scripts/audit/copy.mjs` with a case in `test/fixtures/defects.html`; a token or base rule in `src/index.css` or a preset value in `src/directions.css`; a sentence in this file. This file holds only what code cannot check. Do not add component names, pixel values or one site's incident here. Keep it under 32 KiB; Codex truncates past that.
+
+## Promoting a section
+
+A section from a finished prospect joins the starter through `npm run promote -- --from <prospect dir> --section <path>`. It refuses hardcoded colours, px sizes, font literals and fixed radius or shadow classes. Preview the section in `src/dev/section-showcase.tsx`, run the audit under each direction, then list it in `src/components/sections/promoted/README.md`.
+
+## Efficiency
+
+Read only the files the step needs. Batch independent reads; keep dependent edits sequential. One research pass, one plan, one build, the verify loop, one delivery. No subagents unless asked. Progress updates only for findings, blockers and decisions.

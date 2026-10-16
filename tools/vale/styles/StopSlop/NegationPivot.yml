@@ -1,0 +1,13 @@
+extends: existence
+message: "Negation pivot '%s'. State the second half directly and delete the negation."
+link: https://github.com/hardikpandya/stop-slop
+level: error
+ignorecase: true
+nonword: true
+raw:
+  - '(?:\b(?:it|that|this|they|we)(?:''s|s|\ is|\ are|\ was|\ were)\s+not(?:\s+just|\s+only)?\b[^.?!]{1,80}?[,.]\s*(?:it|that|this|they|we)(?:''s|\ is|''re|\ are)\b'
+  - '|\b(?:is|was|are|were|do|does|did|can|could|would|will)n''t\b[^.?!]{1,80}?[,.]\s*(?:it|that|this|they|we|you)(?:''s|\ is|''re|\ are)\b'
+  - '|\bnot\s+(?:just|only)\b[^.?!]{0,60}?\bbut(?:\s+also)?\b'
+  - '|\bnot\s+because\b[^.?!]{1,80}?[,.]\s*(?:but\s+)?because\b'
+  - '|\bstops?\s+being\b[^.?!]{1,60}?\bstarts?\s+being\b'
+  - '|\b(?:feels|seems|looks)\s+like\b[^.?!]{1,60}?[,.]\s*(?:it''s|it\ is)\s+(?:actually|really)\b)'

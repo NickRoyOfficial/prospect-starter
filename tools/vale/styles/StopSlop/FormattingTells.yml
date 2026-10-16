@@ -1,0 +1,9 @@
+extends: existence
+message: "Formatting tell '%s'. Plain text, plain punctuation."
+link: https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing
+level: suggestion
+nonword: true
+raw:
+  - '(?:🚀|✨|🔥|💡|🎯|📈|🙌|👇|✅|❌)'
+  - '|(?:^|\s)(?:Firstly|Secondly|Thirdly|Lastly),'
+  - '|\bIt(?:''s| is) (?:not|no) (?:just|merely|simply) about\b'

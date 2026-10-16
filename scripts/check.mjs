@@ -5,7 +5,8 @@ const root = resolve('public');
 let errors = 0;
 function fail(message) { console.error(message); errors++; }
 async function walk(dir) { const entries = await readdir(dir, { withFileTypes: true }); const nested = await Promise.all(entries.map(e => e.isDirectory() ? walk(resolve(dir, e.name)) : resolve(dir, e.name))); return nested.flat(); }
-const files = [resolve('index.html'), ...await walk(resolve('src')), ...await walk(root), ...await walk(resolve('scripts')), ...await walk(resolve('test'))];
+// test/fixtures holds pages that are broken on purpose for the audit tests.
+const files = [resolve('index.html'), ...await walk(resolve('src')), ...await walk(root), ...await walk(resolve('scripts')), ...await walk(resolve('test'))].filter(f => !f.includes(`${sep}fixtures${sep}`));
 for (const file of files) {
   if (['.js', '.mjs'].includes(extname(file))) {
     const result = spawnSync(process.execPath, ['--check', file], { encoding: 'utf8' });

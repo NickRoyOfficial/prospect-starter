@@ -1,0 +1,7 @@
+extends: existence
+message: "Trailing participle '%s'. Make it a sentence with a subject doing something."
+link: https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing
+level: warning
+nonword: true
+raw:
+  - ',\s+(?:highlighting|emphasi[sz]ing|underscoring|showcasing|reflecting|demonstrating|ensuring|allowing|enabling|providing|offering|creating|making it|marking|solidifying|cementing|reinforcing)\s+[^.?!]{5,70}[.?!]'

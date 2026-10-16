@@ -1,0 +1,33 @@
+extends: existence
+message: "Weasel word '%s'. Give the number or name the thing."
+link: https://github.com/hardikpandya/stop-slop
+level: suggestion
+ignorecase: true
+action:
+  name: remove
+tokens:
+  - "several"
+  - "various"
+  - "a (?:number|variety) of"
+  - "many"
+  - "a few"
+  - "some of the"
+  - "relatively"
+  - "substantially"
+  - "remarkably"
+  - "fairly"
+  - "quite"
+  - "largely"
+  - "mostly"
+  - "generally"
+  - "typically"
+  - "often"
+  - "sometimes"
+  - "arguably"
+  - "surprisingly"
+  - "notably"
+  - "significantly"
+  - "considerably"
+  - "a wide range of"
+  - "countless"
+  - "numerous"

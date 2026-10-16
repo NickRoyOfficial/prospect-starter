@@ -1,0 +1,33 @@
+extends: existence
+message: "Adverb '%s'. Delete it; the verb should carry the weight."
+level: warning
+ignorecase: true
+action:
+  name: remove
+tokens:
+  - "really"
+  - "just"
+  - "literally"
+  - "genuinely"
+  - "honestly"
+  - "simply"
+  - "actually"
+  - "deeply"
+  - "truly"
+  - "fundamentally"
+  - "inherently"
+  - "inevitably"
+  - "interestingly"
+  - "importantly"
+  - "crucially"
+  - "basically"
+  - "essentially"
+  - "clearly"
+  - "obviously"
+  - "certainly"
+  - "undoubtedly"
+  - "significantly"
+  - "incredibly"
+  - "absolutely"
+  - "extremely"
+  - "very"

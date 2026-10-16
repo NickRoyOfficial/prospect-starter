@@ -1,0 +1,22 @@
+# Lifted from write-good's passive-voice package and Google/Passive.yml.
+extends: existence
+message: "Possible passive voice '%s'. Name the actor and put them first."
+level: suggestion
+ignorecase: true
+raw:
+  - '\b(?:am|are|were|being|is|been|was|be)\b\s+'
+tokens:
+  - '\w+ed'
+  - 'known'
+  - 'shown'
+  - 'made'
+  - 'taken'
+  - 'given'
+  - 'built'
+  - 'held'
+  - 'seen'
+  - 'done'
+  - 'written'
+  - 'chosen'
+  - 'driven'
+  - 'brought'
