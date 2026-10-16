@@ -1,0 +1,33 @@
+extends: script
+message: "%s"
+link: https://github.com/hardikpandya/stop-slop
+level: warning
+scope: paragraph
+script: |
+  text := import("text")
+
+  matches := []
+  parts := text.re_split(`[.!?]+[\s]+`, scope, -1)
+
+  firsts := []
+  for p in parts {
+    w := text.fields(p)
+    if len(w) > 2 {
+      firsts = append(firsts, text.to_lower(text.trim(w[0], ",;:")))
+    }
+  }
+
+  if len(firsts) >= 3 {
+    for i := 0; i < len(firsts)-2; i++ {
+      if firsts[i] == firsts[i+1] && firsts[i+1] == firsts[i+2] {
+        e := 60
+        if len(scope) < 60 { e = len(scope) }
+        matches = append(matches, {
+          begin: 0,
+          end: e,
+          message: "Three sentences in a row open with '" + firsts[i] + "'. Vary the opening."
+        })
+        break
+      }
+    }
+  }

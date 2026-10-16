@@ -1,0 +1,7 @@
+extends: occurrence
+message: "More than one -ly adverb in this paragraph. Cut them."
+link: https://github.com/hardikpandya/stop-slop
+level: warning
+scope: paragraph
+max: 1
+token: '\b\w{3,}ly\b'

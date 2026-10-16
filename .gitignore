@@ -10,3 +10,6 @@ playwright-report/
 *.log
 dist/
 *.tsbuildinfo
+
+# correction log from the Codex hook (docs/corrections.md); remove this line to version it
+.agents/corrections.jsonl

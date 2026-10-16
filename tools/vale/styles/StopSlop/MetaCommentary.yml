@@ -1,0 +1,11 @@
+extends: existence
+message: "Meta-commentary '%s'. Delete it and let the piece move."
+level: error
+ignorecase: true
+nonword: true
+raw:
+  - '(?:\b(?:everything|all)\s+(?:after|below|that\s+follows)\s+this\b[^.?!]{0,40}?\bexplains?\b'
+  - '|\bthe\s+(?:rest|remainder)\s+of\s+this\s+(?:essay|post|piece|document|deck|section)'
+  - '|\bin\s+(?:this|the\s+next)\s+section'
+  - '|\b(?:this|the)\s+(?:page|slide|deck|document)\s+(?:explains|covers|walks\s+through)'
+  - '|\bwe(?:''ll|\ will)\s+(?:cover|explore|walk\s+through|unpack)\b)'

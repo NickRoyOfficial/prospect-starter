@@ -1,0 +1,120 @@
+/*
+  Direction presets. Set one on the root element: <html data-direction="bold">.
+  A direction decides typography, shape, density, surface and motion. Colour comes from
+  brand.css. The agent picks a direction from docs/directions.md, sets the brand, then
+  composes sections; it does not invent a type system per site.
+
+  Fonts are named with system fallbacks. Load the pairing from Google Fonts in index.html
+  (the <link> for each direction is in docs/directions.md) or keep the fallback.
+*/
+
+/* Editorial: serif display, generous white space, hairlines. Law, accounting, consulting, architecture, clinics. */
+html[data-direction="editorial"] {
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+  --weight-display: 500;
+  --tracking-display: -.015em;
+  --leading-display: 1.08;
+  --text-display: clamp(2.75rem, 1.6rem + 4.6vw, 5.5rem);
+  --radius: .25rem;
+  --radius-card: .375rem;
+  --section-space: clamp(4.5rem, 9vw, 9rem);
+  --card-gap: var(--space-8);
+  --card-pad: var(--space-8);
+  --border-card: 1px solid color-mix(in oklab, var(--foreground) 14%, transparent);
+  --shadow-lift: none;
+  --motion-base: 300ms;
+  --motion-slow: 600ms;
+  --reveal-distance: 8px;
+}
+
+/* Bold: heavy grotesk, square corners, solid borders, dense. Trades, gyms, auto, contractors, movers. */
+html[data-direction="bold"] {
+  --font-display: "Archivo", "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --weight-display: 800;
+  --tracking-display: -.045em;
+  --leading-display: .96;
+  --text-display: clamp(3rem, 1.5rem + 6vw, 7rem);
+  --text-3xl: clamp(2.25rem, 1.4rem + 3vw, 4rem);
+  --radius: 0rem;
+  --radius-card: 0rem;
+  --section-space: clamp(3rem, 6vw, 6rem);
+  --card-gap: var(--space-3);
+  --card-pad: var(--space-5);
+  --control-pad-x: var(--space-5);
+  --border-card: 2px solid var(--foreground);
+  --shadow-lift: none;
+  --motion-fast: 100ms;
+  --motion-base: 180ms;
+  --reveal-distance: 16px;
+}
+
+/* Warm: rounded sans, soft corners, paper lift, friendly scale. Bakeries, childcare, pets, family services, wellness. */
+html[data-direction="warm"] {
+  --font-display: "Nunito", "Avenir Next", "Segoe UI", sans-serif;
+  --font-sans: "Nunito", "Avenir Next", "Segoe UI", sans-serif;
+  --weight-display: 700;
+  --tracking-display: -.02em;
+  --leading-display: 1.1;
+  --radius: 1rem;
+  --radius-card: 1.5rem;
+  --radius-media: 1.5rem;
+  --section-space: clamp(3.5rem, 7vw, 7rem);
+  --card-gap: var(--space-5);
+  --card-pad: var(--space-6);
+  --control-h: 2.75rem;
+  --border-card: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+  --shadow-lift: 0 2px 4px rgb(0 0 0 / .04), 0 12px 32px -12px rgb(0 0 0 / .16);
+  --motion-base: 260ms;
+  --reveal-distance: 10px;
+}
+
+/* Technical: neutral sans, mono labels, hairline grid, compact. IT, engineering, HVAC, electrical, labs, logistics. */
+html[data-direction="technical"] {
+  --font-display: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --weight-display: 600;
+  --tracking-display: -.01em;
+  --leading-display: 1.1;
+  --tracking-label: .04em;
+  --radius: .375rem;
+  --radius-card: .5rem;
+  --section-space: clamp(3rem, 6vw, 5.5rem);
+  --card-gap: var(--space-4);
+  --card-pad: var(--space-5);
+  --border-card: 1px solid var(--border);
+  --shadow-lift: none;
+  --motion-base: 200ms;
+  --reveal-distance: 6px;
+}
+html[data-direction="technical"] .p-eyebrow, html[data-direction="technical"] small, html[data-direction="technical"] figcaption { font-family: var(--font-mono); letter-spacing: var(--tracking-label); }
+
+/* Refined: light geometric sans, wide tracked small labels, lots of air, thin lines. Salons, spas, boutiques, real estate, interiors. */
+html[data-direction="refined"] {
+  --font-display: "Jost", "Futura", "Avenir Next", sans-serif;
+  --font-sans: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --weight-display: 500;
+  --tracking-display: 0;
+  --leading-display: 1.12;
+  --tracking-label: .08em;
+  --text-display: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+  --radius: .125rem;
+  --radius-card: .25rem;
+  --section-space: clamp(5rem, 10vw, 10rem);
+  --card-gap: var(--space-10);
+  --card-pad: var(--space-8);
+  --control-pad-x: var(--space-6);
+  --border-card: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
+  --shadow-lift: none;
+  --motion-base: 350ms;
+  --motion-slow: 700ms;
+  --reveal-distance: 6px;
+}
+html[data-direction="refined"] small, html[data-direction="refined"] figcaption, html[data-direction="refined"] .p-eyebrow { letter-spacing: var(--tracking-label); }
+
+/* Reveal on scroll: add class "reveal" and let useReveal() flip "is-visible". Transform and opacity only. */
+.reveal { opacity: 0; translate: 0 var(--reveal-distance); transition: opacity var(--motion-slow) var(--ease), translate var(--motion-slow) var(--ease); }
+.reveal.is-visible { opacity: 1; translate: 0 0; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; translate: 0 0; transition: none; } }

@@ -1,0 +1,6 @@
+extends: existence
+message: "Sentence opens with '%s'. Lead with the subject."
+level: suggestion
+scope: sentence
+raw:
+  - '^(?:What|When|Where|Which|Who|Why|How|So|Look),?\s+(?![^.?!]*\?)'

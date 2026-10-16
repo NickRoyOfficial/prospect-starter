@@ -1,0 +1,26 @@
+extends: existence
+message: "Closing ritual '%s'. End on the last real point instead."
+link: https://github.com/hardikpandya/stop-slop
+level: error
+ignorecase: true
+action:
+  name: remove
+tokens:
+  - "in conclusion"
+  - "in summary"
+  - "to sum up"
+  - "to summarise"
+  - "to summarize"
+  - "all in all"
+  - "at the end of the day"
+  - "the possibilities are endless"
+  - "only time will tell"
+  - "the future is bright"
+  - "the future of [\\w\\s]{3,30} is here"
+  - "one thing is (?:clear|certain)"
+  - "the bottom line is"
+  - "so there you have it"
+  - "and that'?s okay"
+  - "the journey (?:is|has) just (?:begun|beginning)"
+  - "watch this space"
+  - "stay tuned"

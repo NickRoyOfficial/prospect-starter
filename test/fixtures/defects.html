@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit fixture: every defect the audit should catch</title>
+<style>
+  body { margin: 0; font-family: system-ui, sans-serif; background: #ffffff; color: #171717; text-align: center; }
+  .sticky { position: sticky; top: 0; height: 60px; background: #eee; }
+  .hero { min-height: 200vh; padding: 20px; }
+  .wide { width: 120vw; height: 10px; background: #ddd; }
+  .cramped { padding: 0; background: #333; color: #fff; border: 0; font-size: 16px; }
+  .short { height: 28px; padding: 5px 14px; font-size: 16px; background: #333; color: #fff; border: 0; }
+  .low { color: #999; }
+  .tiny { font-size: 10px; }
+  .noring { outline: none; padding: 12px 20px; background: #333; color: #fff; border: 0; }
+  .noring:focus, .noring:focus-visible { outline: none; }
+  .stage { position: relative; height: 120px; }
+  .a, .b { position: absolute; left: 20px; top: 10px; width: 200px; margin: 0; }
+  .b { top: 18px; }
+  .over { position: absolute; left: 20px; top: 70px; width: 220px; margin: 0; }
+  .overbtn { position: absolute; left: 30px; top: 66px; padding: 12px 20px; background: #333; color: #fff; border: 0; }
+  .obscured-wrap { position: relative; display: inline-block; }
+  .cover { position: absolute; inset: 0; background: rgba(255,255,255,0.01); }
+  .clip { height: 30px; overflow: hidden; width: 240px; margin: 0 auto; }
+  .gradient { background: linear-gradient(90deg, #f00, #00f); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .caps { text-transform: uppercase; }
+  .thin { font-weight: 300; }
+  .eyebrow { font-size: 12px; margin: 0; }
+  .tracked { letter-spacing: 0.12em; }
+  .bar { border-left: 4px solid #c00; padding: 16px; background: #f3f3f3; width: 300px; margin: 10px auto; }
+  .glass { backdrop-filter: blur(12px); background: rgba(255,255,255,0.4); padding: 16px; width: 300px; margin: 10px auto; }
+  .glow { box-shadow: 0 0 40px rgba(120, 0, 255, 0.6); padding: 16px; background: #fafafa; width: 300px; margin: 10px auto; }
+  .r2 { border-radius: 2px; } .r6 { border-radius: 6px; } .r12 { border-radius: 12px; } .r24 { border-radius: 24px; }
+  .btn { padding: 12px 20px; background: #333; color: #fff; border: 0; font-size: 16px; }
+  footer .cols { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .p-split { display: grid; grid-template-columns: 1fr 1fr; }
+  .trap { transform: translateX(0); height: 60px; }
+  .fixedbtn { position: fixed; bottom: 10px; right: 10px; padding: 12px 20px; background: #333; color: #fff; border: 0; }
+  .small { font-size: 13px; }
+  [role="menu"] a { display: block; padding: 0; background: #eee; color: #171717; text-decoration: none; }
+</style>
+<script>throw new Error('fixture runtime error')</script>
+</head>
+<body>
+<div class="sticky">Sticky bar</div>
+<main>
+<section class="hero">
+  <h1>First heading</h1>
+  <h1>Second heading</h1>
+  <p>Line one of a tall stack.</p>
+  <p>Line two of a tall stack.</p>
+  <p>Line three of a tall stack.</p>
+  <p>Line four of a tall stack.</p>
+  <p>Line five of a tall stack.</p>
+  <div class="wide"></div>
+</section>
+<section>
+  <h3>Skipped from h1 to h3</h3>
+  <img src="/missing-image-for-fixture.png" alt="Broken image">
+  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100'%3E%3Crect width='200' height='100' fill='%23888'/%3E%3C/svg%3E" width="100" height="100" alt="Distorted">
+  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='50' height='50' fill='%23888'/%3E%3C/svg%3E" width="50" height="50">
+  <p><a href="#">Dead link</a> and <a href="#nowhere">missing anchor</a></p>
+  <p>Lorem ipsum dolor sit amet, placeholder copy left in the page.</p>
+  <button class="cramped">Tight button</button>
+  <button class="short">Short button</button>
+  <p class="low">Low contrast paragraph that should fail the ratio check.</p>
+  <p class="tiny">Ten pixel text is too small to read on any screen.</p>
+  <p class="small">Thirteen pixel body text with more than eight words in it to trigger the warning.</p>
+  <button class="noring">No focus ring</button>
+  <label>Zoom <input class="small" type="text" style="padding: 12px; height: 44px"></label>
+</section>
+<section class="stage">
+  <p class="a">Overlapping paragraph one sits here.</p>
+  <p class="b">Overlapping paragraph two sits here.</p>
+  <p class="over">Paragraph under a floating button.</p>
+  <button class="overbtn">Floating</button>
+</section>
+<section>
+  <span class="obscured-wrap"><button class="btn">Covered button</button><span class="cover"></span></span>
+  <div class="clip"><p>This paragraph is long enough to wrap onto several lines inside a thirty pixel box so that the bottom lines are cut off by overflow hidden.</p></div>
+  <div class="trap"><button class="fixedbtn">Trapped fixed</button></div>
+</section>
+<section>
+  <h2 class="gradient">Gradient text heading</h2>
+  <h2 class="caps">Uppercase heading</h2>
+  <h2 class="thin">Thin display heading</h2>
+  <p class="eyebrow">Our services</p>
+  <h2>Heading with an eyebrow</h2>
+  <h2>Ready to get started?</h2>
+  <h2>Elevate your home today</h2>
+  <h2>Simply the best</h2>
+  <p class="tracked">Tracked body copy with far too much letter spacing across the words.</p>
+  <p>We launch fast 🚀 and ship often.</p>
+  <p>Fast · Local · Trusted</p>
+  <p>Fast. Local. Trusted.</p>
+  <div class="bar">Accent bar callout</div>
+  <div class="glass">Glass card</div>
+  <div class="glow">Glowing card</div>
+  <button class="btn r2">Two</button> <button class="btn r6">Six</button> <button class="btn r12">Twelve</button> <button class="btn r24">Twenty four</button>
+  <svg class="lucide lucide-sparkles" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2l2 7 7 2-7 2-2 7-2-7-7-2 7-2z"/></svg>
+</section>
+<section>
+  <p>Here's the thing: we understand that your home matters.</p>
+  <p>It's not just about price, it's about trust.</p>
+  <p>Our team — the best in town — is ready.</p>
+  <p>Only 3 spots left this month, so hurry.</p>
+  <p>100% satisfaction guaranteed on every job.</p>
+  <p>A seamless experience from start to finish, ensuring a stress-free process for you.</p>
+  <p>In conclusion, call us today.</p>
+  <button class="btn">Learn more</button>
+</section>
+<section><div class="p-split"><div>A</div><div>B</div></div></section>
+<section><div class="p-split"><div>C</div><div>D</div></div></section>
+<section><div class="p-split"><div>E</div><div>F</div></div></section>
+<section>
+  <details><summary class="btn">Menu</summary><div role="menu"><a role="menuitem" href="/one">Item one</a><a role="menuitem" href="/two">Item two</a></div></details>
+</section>
+</main>
+<footer><div class="cols"><div>One</div><div>Two</div><div>Three</div><div>Four</div></div></footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+extends: existence
+message: "Lazy extreme '%s'. Use a specific number or name."
+level: suggestion
+ignorecase: true
+tokens:
+  - "everyone"
+  - "everybody"
+  - "nobody"
+  - "no one"
+  - "always"
+  - "never"
+  - "everything"

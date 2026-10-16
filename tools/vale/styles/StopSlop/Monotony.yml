@@ -1,0 +1,44 @@
+extends: script
+message: "%s"
+link: https://github.com/hardikpandya/stop-slop
+level: warning
+scope: paragraph
+script: |
+  text := import("text")
+  math := import("math")
+
+  matches := []
+  parts := text.re_split(`[.!?]+[\s]+`, scope, -1)
+
+  counts := []
+  for p in parts {
+    w := text.fields(p)
+    if len(w) > 2 {
+      counts = append(counts, len(w))
+    }
+  }
+
+  if len(counts) >= 4 {
+    sum := 0.0
+    for c in counts { sum += float(c) }
+    mean := sum / float(len(counts))
+    ss := 0.0
+    for c in counts {
+      d := float(c) - mean
+      ss += d * d
+    }
+    sd := math.sqrt(ss / float(len(counts)))
+    cv := 0.0
+    if mean > 0.0 { cv = sd / mean }
+    if cv < 0.35 {
+      e := 60
+      if len(scope) < 60 { e = len(scope) }
+      matches = append(matches, {
+        begin: 0,
+        end: e,
+        message: "Metronomic rhythm: " + string(len(counts)) + " sentences, mean " +
+                 string(int(mean)) + " words, variation " + string(cv) +
+                 " (want > 0.35). Break one sentence."
+      })
+    }
+  }

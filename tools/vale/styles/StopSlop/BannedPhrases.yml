@@ -1,0 +1,42 @@
+extends: existence
+message: "Banned phrase '%s'. Cut it and state the point."
+link: https://github.com/hardikpandya/stop-slop
+level: error
+ignorecase: true
+action:
+  name: remove
+tokens:
+  - "here'?s the thing"
+  - "here'?s what (i|you|we) (mean|find|think)"
+  - "here'?s why(?: that)? matters"
+  - "here'?s where this gets"
+  - "the uncomfortable truth is"
+  - "it turns out"
+  - "let me be clear"
+  - "the truth is"
+  - "i'?ll say it again"
+  - "i'?m going to be honest"
+  - "can we talk about"
+  - "full stop\\."
+  - "let that sink in"
+  - "read that again"
+  - "make no mistake"
+  - "this matters because"
+  - "at its core"
+  - "in today'?s [\\w-]+"
+  - "it'?s worth noting"
+  - "at the end of the day"
+  - "when it comes to"
+  - "in a world where"
+  - "the reality is"
+  - "plot twist"
+  - "spoiler"
+  - "you already know this,? but"
+  - "is a feature,? not a bug"
+  - "the rest of this (essay|post|piece)"
+  - "let me walk you through"
+  - "in this section,? we'?ll"
+  - "as we'?ll see"
+  - "i want to explore"
+  - "this is genuinely hard"
+  - "this is what [\\w\\s]+ actually looks like"
