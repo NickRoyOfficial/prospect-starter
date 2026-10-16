@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ComponentProps, type ReactNode } from "react"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, Quote } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog"
@@ -22,6 +23,15 @@ export function SplitSection({ media, children, reverse = false, inset = false, 
 export function CallToAction({ children, action, className }: Content & { action: ReactNode }) { return <div className={cn("p-cta", className)}><div>{children}</div><div>{action}</div></div> }
 export function FooterLayout({ children, bottom, variant = "columns", className }: Content & { bottom?: ReactNode; variant?: "columns" | "compact" }) { return <footer className={cn("p-footer p-wrap", `p-footer-${variant}`, className)}><div className="p-footer-main">{children}</div>{bottom && <div className="p-footer-bottom">{bottom}</div>}</footer> }
 export function FAQ({ items, className }: { items: { question: string; answer: ReactNode }[]; className?: string }) { return <Accordion type="single" collapsible className={className}>{items.map((item, index) => <AccordionItem key={index} value={String(index)}><AccordionTrigger>{item.question}</AccordionTrigger><AccordionContent>{item.answer}</AccordionContent></AccordionItem>)}</Accordion> }
+export type Testimonial = { name: string; quote: string; detail?: string; avatar?: string; sourceHref?: string }
+/** Compact, attributed review cards. Pass verified quotes only; initials are used when no real portrait is supplied. */
+export function TestimonialCards({ items, className }: { items: Testimonial[]; className?: string }) {
+  if (!items.length) return null
+  return <div className={cn("p-testimonials", className)} role="list">{items.map((item, index) => {
+    const initials = item.name.trim().split(/\s+/).filter(Boolean).filter((_, i, words) => i === 0 || i === words.length - 1).map(word => word[0]).join("").slice(0, 2)
+    return <Card key={`${item.name}-${index}`} className="p-testimonial-card" role="listitem"><CardContent className="p-testimonial-content"><Quote className="p-testimonial-mark" aria-hidden="true" /><blockquote><p>{item.quote}</p></blockquote><footer className="p-testimonial-author">{item.avatar ? <img className="p-testimonial-avatar" src={item.avatar} alt="" loading="lazy" /> : <span className="p-testimonial-avatar" aria-hidden="true">{initials}</span>}<div><cite>{item.name}</cite>{item.detail && <p>{item.detail}</p>}</div>{item.sourceHref && <a href={item.sourceHref} aria-label={`Read the original review by ${item.name}`} className="p-testimonial-source" target="_blank" rel="noopener noreferrer"><ArrowUpRight aria-hidden="true" /></a>}</footer></CardContent></Card>
+  })}</div>
+}
 export function FeedbackCarousel({ items, label = "Customer feedback", className }: { items: { name: string; content: ReactNode }[]; label?: string; className?: string }) {
   if (!items.length) return null
   return <Carousel opts={{ loop: items.length > 1 }} aria-label={label} tabIndex={0} className={cn("p-feedback", className)}><CarouselContent>{items.map((item, index) => <CarouselItem key={index} aria-label={`${index + 1} of ${items.length}`}><article className="p-feedback-card">{item.content}<p className="p-feedback-name">{item.name}</p></article></CarouselItem>)}</CarouselContent>{items.length > 1 && <div className="p-carousel-controls"><CarouselPrevious /><CarouselNext /></div>}</Carousel>

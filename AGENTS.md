@@ -37,3 +37,10 @@
 - Keep Cloudflare Git build settings compatible with the existing default: empty build command, npx wrangler deploy. package.json prepare runs npm run build during dependency installation, so dist/ exists before deployment. Do not instruct the user to change working dashboard settings. npm run deploy remains an optional local build-and-deploy command. Set the prospect Worker name; never deploy the shared starter unless requested.
 - Commit authorized changes and verify the intended build on the live URL. Report unavailable checks, missing access, or deployment failures accurately. A commit alone does not prove deployment.
 - Keep concepts noindex and clearly identify independent concepts until an official launch is authorized. Do not ask for permission already granted.
+
+## Testimonial UI standard
+- Use TestimonialCards from src/components/sections/layouts.tsx for a small set of verified reviews. It composes the installed shadcn Card and CardContent. Default to three compact equal-height cards on desktop, two on tablets, and a readable single-column mobile stack.
+- Include a restrained quote mark, 16–18px review text with comfortable line height, and bottom-aligned author attribution. Use only real portraits or neutral initials. Dates or roles must come from the source. Never invent ratings, stars, identities, review counts, or endorsements.
+- Keep section headings proportionate to the cards. Avoid giant full-width slides for a few short reviews, excessive empty space, floating/overlapping controls, and developer-facing source notes in the main visual hierarchy.
+- Use carousels only when the number of reviews or the approved composition warrants them. Controls must be in a separate normal-flow row, at least 44px, with visible focus/hover states, meaningful accessible names, and no inherited translate offset. Preserve touch/keyboard interaction and reduced-motion behavior.
+- Adapt colors, borders, corner radius, and spacing to each business without weakening this hierarchy. The standard is a quality baseline, not one identical section copied everywhere.
